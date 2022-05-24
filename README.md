@@ -65,7 +65,6 @@ for element in pdf_array:
 from difflib import SequenceMatcher
 def similar(a, b):
     return SequenceMatcher(None, a, b).ratio()
-# print(similar("apple", "appel"))
 ```
 
 
@@ -89,9 +88,13 @@ for teacher in teachers_key_words:
                 if (similar(word, to_compare) > 0.8): # 80% accurate to compare
                     try:
                         teachers_ieee_areas[teacher].index(category)
-                        # se repite una categoria con este doctor
+                        # se repite una categoria con este profesor
                     except ValueError:
                         teachers_ieee_areas[teacher].append(category)
+                    try:
+                        teachers_ieee_areas[teacher].index(to_compare)
+                        # se repite una categoria con este profesor
+                    except ValueError:
                         teachers_ieee_areas[teacher].append(to_compare)
                     
 teachers_ieee_areas # areas definidas por el tesauro con un 80% de certeza en la comparación de conceptos
@@ -100,49 +103,57 @@ teachers_ieee_areas # areas definidas por el tesauro con un 80% de certeza en la
 
 
 
-    {'manuel': ['Mathematics', 'Optimization'],
+    {'manuel': ['Mathematics',
+      'Optimization',
+      'Metaheuristics',
+      'Simulatedannealing'],
      'pablo': ['Mathematics',
       'Compressedsensing',
       'accesspoints',
       'Imagesynthesis',
-      'Systems,man,andcybernetics',
       'Humanimagesynthesis',
+      'Systems,man,andcybernetics',
       'ScienceŒgeneral',
       'Astronomy',
       '(telecommunication)',
       'Neuroinformatics',
       'Professionalcommunication',
-      'Neuroinformatics',
+      'Imageclassification',
       'Computationalandartificialintelligence',
       'Deeplearning',
       'Systemsengineeringandtheory',
-      'Deeplearning'],
+      'Convolutionalneuralnetworks'],
      'leo': ['Computationalandartificialintelligence',
       'Deeplearning',
       'Systemsengineeringandtheory',
-      'Deeplearning',
+      'Artificialintelligence',
       'Systems,man,andcybernetics',
       'Userinterfaces',
+      'Machinelearning',
       '(telecommunication)',
       'Geoscience',
+      'Neuroscience',
       'Geoscienceandremotesensing',
-      'Geoscience',
-      'analysiscomputing',
-      'Computationalneuroscience'],
+      'Fuzzyneuralnetworks',
+      'Neuralnetworks',
+      'Graphneuralnetworks',
+      'Computationalneuroscience',
+      'analysiscomputing'],
      'violeta': ['Computationalandartificialintelligence',
       'Deeplearning',
       'Systemsengineeringandtheory',
-      'Deeplearning',
+      'Convolutionalneuralnetworks',
       'accesspoints',
       'Imageclassification',
       'Systems,man,andcybernetics',
       'Morphology',
       '(telecommunication)',
       'Vegetation',
+      'Imagesegmentation',
       'Lasersandelectrooptics',
       'Pigmentation',
       'Materials,elements,andcompounds',
-      'Pigmentation']}
+      'Transferlearning']}
 
 
 
@@ -187,10 +198,10 @@ for teacher in teachers_similarity:
 
     Las areas de IEEE tienen una similud a las de la universidad de:
     
-    manuel: 31.41%
-    pablo: 28.25%
-    leo: 31.55%
-    violeta: 25.91%
+    manuel: 31.22%
+    pablo: 26.09%
+    leo: 30.06%
+    violeta: 25.15%
 
 
 
